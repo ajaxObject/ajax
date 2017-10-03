@@ -30,3 +30,69 @@ function ajax(mJson){
 };
 ```
 
+跨域访问百度 效果如下：
+
+![](images/img.gif)
+
+js demo code:
+
+```
+	var oTxt = document.getElementById("txt");
+	var oList = document.getElementById("list");
+	oTxt.onkeyup = function(){
+		var val = this.value;
+		var oS = document.createElement("script");
+		oS.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&cb=andong";
+		document.body.appendChild(oS);
+		document.body.removeChild(oS);
+	};
+	function andong(mJson){
+		var data = mJson.s;
+		var str = "";
+		for(var i=0;i<data.length;i++){
+			str += "<li><a href='https://www.baidu.com/s?wd="+data[i]+"' target='_blank'>"+data[i]+"</a></li>";
+		}
+		oList.innerHTML = str;
+	}
+	oList.onmouseover = function(ev){
+		ev = ev||event;
+		var target = ev.target || srcElement;
+		//console.log(target.tagName+"===="+ev.currentTarget.tagName);
+		target.style.background = "#ccc";
+	};
+	oList.onmouseout = function(ev){
+		ev = ev||event;
+		var target = ev.target || srcElement;
+		//console.log(target.tagName+"===="+ev.currentTarget.tagName);
+		target.style.background = "";
+	};
+```
+
+jquery demo code:
+
+```
+    $(function(){
+        $("input").keyup(function(){
+            $.ajax({
+                type:"get",
+                data:"wd="+$(this).val(),
+                dataType:"jsonP",
+                url:"http://suggestion.baidu.com/su",
+                success:function(data){
+                }
+            });
+        });
+    });
+    var baidu={
+        sug:function(data){
+            for(var i=0;i<10;i++){
+                document.getElementsByTagName ("li")[i].setAttribute("class","aa");
+                document.getElementsByTagName ("li")[i].innerText =data.s[i];
+                if($("input").val().length>8||$("input").val().length==0){
+                    $("li").removeAttr("class")
+                }
+            }
+
+        }
+    }
+```
