@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsonp原生跨域</title>
+	<meta name="keywords" content="关键词,关键词">
+	<style>
+		*{padding:0px;margin:0px;}
+		body{overflow:hidden;}
+		#box{width:500px;margin:100px auto;}
+		#txt{width:500px;height:30px;font-family:"Microsoft yahei";text-indent:1em;font-size:14px;}
+		#list li{list-style:none;width:500px;line-height:30px;border-bottom:1px solid gray;text-indent:1em;font-size:14px;cursor:pointer;}
+		/*#list li:hover{background:#ccc;}*/
+		#list li a{text-decoration:none;color:#000;display:block;}
+	</style>
+</head>
+<body>
+<div id="box">
+	<input type="text" id="txt"/>
+	<ul id="list">
+	</ul>
+</div>
+</body>
+</html>
+<script>
+	var oTxt = document.getElementById("txt");
+	var oList = document.getElementById("list");
+	oTxt.onkeyup = function(){
+		var val = this.value;
+		var oS = document.createElement("script");
+		oS.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&cb=andong";
+		document.body.appendChild(oS);
+		document.body.removeChild(oS);
+	};
+	function andong(mJson){
+		var data = mJson.s;
+		var str = "";
+		for(var i=0;i<data.length;i++){
+			str += "<li><a href='https://www.baidu.com/s?wd="+data[i]+"' target='_blank'>"+data[i]+"</a></li>";
+		}
+		oList.innerHTML = str;
+	}
+	oList.onmouseover = function(ev){
+		ev = ev||event;
+		var target = ev.target || srcElement;
+		//console.log(target.tagName+"===="+ev.currentTarget.tagName);
+		target.style.background = "#ccc";
+	};
+	oList.onmouseout = function(ev){
+		ev = ev||event;
+		var target = ev.target || srcElement;
+		//console.log(target.tagName+"===="+ev.currentTarget.tagName);
+		target.style.background = "";
+	};
+</script>
