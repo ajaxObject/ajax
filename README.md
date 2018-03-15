@@ -1,5 +1,5 @@
 # 原生ajax以及跨域访问百度ajax
-fdsfdsf
+
 原生ajax:
 
 ```
