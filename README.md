@@ -2,7 +2,7 @@
 
 原生ajax:
 
-```
+```gfg
 function ajax(mJson){
 	var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
 	var method = mJson.method || "get";
