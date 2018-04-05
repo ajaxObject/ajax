@@ -1,6 +1,6 @@
 # 原生ajax以及跨域访问百度ajax
 
-原生ajax:
+原生ajax:韩国和规范化
 
 ```
 function ajax(mJson){
