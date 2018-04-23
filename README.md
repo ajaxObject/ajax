@@ -1,7 +1,7 @@
 # 原生ajax以及跨域访问百度ajax
 
 原生ajax:
-dsdsada
+
 ```
 function ajax(mJson){
 	var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
